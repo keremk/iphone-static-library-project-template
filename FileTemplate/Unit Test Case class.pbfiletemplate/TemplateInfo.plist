@@ -1,0 +1,4 @@
+{
+	MainTemplateFile = "class.m";
+	Description = "An Objective-C class containing an Google Toolkit for Mac based OCUnit and OCMock test case, without the header file. The main .m file includes the <OCMock/OCMock.h>, <OCMock/OCMConstraint.h>, \"GTMSenTestCase.h\" and <UIKit/UIKit.h> headers.";
+}

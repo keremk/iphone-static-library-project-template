@@ -1,0 +1,9 @@
+{
+	FilesToRename = {
+		"CVStaticLibrary_Prefix.pch" = "«PROJECTNAME»_Prefix.pch";
+	};
+	FilesToMacroExpand = (
+		"«PROJECTNAME»_Prefix.pch",
+	);
+	Description = "This project builds a static library that links against the IPhone framework.";
+}
