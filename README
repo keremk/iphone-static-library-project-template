@@ -1,0 +1,60 @@
+Currently the only way to create re-usable code amongst different projects for the iPhone platform is to create static libraries. Frameworks (as in Mac OS X) are not supported in the iPhone SDK. Also setting up unit testing, which is a crucial part of building re-usable libraries of course, is not that trivial.
+
+This project consists of 2 pieces:
+
+* Project Template for creating static libraries with built-in support for unit testing.
+* File Template for creating unit test files.
+
+INSTALLATION:
+---------------
+The user defined project and file templates in XCode are stored in the following path:
+
+   ~/Library/Application Support/Developer/Shared/Xcode
+
+You will be installing everything under the above path.
+
+To install the project template: 
+* Create a folder called "Project Templates" if it does not already exist.
+* Create a subfolder under that for categorization. The name of this folder is what is going to show in the "New Project" dialog under "User Templates". 
+* Copy the contents of ProjectTemplate (from github) under that subfolder, you just created.
+
+To install the file template:
+* Create a folder called "File Templates" if it does not already exist
+* Create a subfolder under that for categorization. The name of this folder is what is going to show in the "New File" dialog under "User Templates". 
+* Copy the contents of FileTemplate (from github) under that subfolder, you just created.
+
+USAGE:
+------
+
+When you want to create a new static library, select "New Project" in XCode and simply select the template you just installed. (Found under the custom sub folder name, under user templates)
+
+The project has the following structure:
+
+* GoogleToolbox group: This is where the necessary files for unit testing is stored. This is a snapshot of the latest Google Toolbox For Mac (GTM) project (http://code.google.com/p/google-toolbox-for-mac/) from the SVN trunk. Note that the 1.5.1 version available from the downloads section had a nasty bug where every unit test error is duplicated. It is fixed in the trunk, and I included that in this project. From time to time you can go to the GTM project site and get the latest and greatest and copy those manually in your template as well.
+
+* UnitTests group: This is where the unit test files will go. To add a new unit test file, select Add->"New File" and select the "Unit Test Case class" template under user templates. The test template comes with the necessary import directives that imports GTMSenTestCase and OCMock header files. Each method in the test template must begin with "test". E.g. testMethod1. Links to the OCMock and GTM project sites are also included in the template for further instructions. The unit test files do not have a corresponding .h file. The interface definition is included inline with the .m file for brevity.
+
+* Source group: This is where your actual source files live.
+
+* Frameworks: OCMock framework is embedded in the project. The other necessary frameworks are linked to.
+
+* Targets: There are 2 targets. One is the project target which will be the static library that you will be building. The second one is the unit test target named "UnitTest". Make sure that all unit test files are only added to this target and not to the static library target, when you create a new unit test file.  
+
+To run the unit tests, you can select the Active Target to be the UnitTest target and hit CMD+B. This will run all the unit tests you have created. Note that when running the unit tests, the IPhone Simulator needs to be closed. If the IPhone Simulator is running you will get an error, and this is a restriction of the GTM suite at the moment of writing.
+
+To debug the unit tests, you can select "Build and Debug", and you will be able to hit breakpoints in your unit test files.
+
+Make sure you add the source files that you will be unit testing to the UnitTest target as you create them.
+
+There is also a drop-in replacement for NSLog included in this template. It is taken directly from http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog.
+
+See below for further info:
+
+http://code.google.com/p/google-toolbox-for-mac/wiki/iPhoneUnitTesting
+
+http://blog.carbonfive.com/2009/02/testing/iphone-unit-testing-toolkit
+
+
+
+
+
